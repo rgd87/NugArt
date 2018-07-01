@@ -1,11 +1,14 @@
 local NugArt = CreateFrame("Frame")
 
+local MainMenuBarTexturesOffset = 0
+
 local textures = {
 	["Chatbg1"] = {
 		["strata"] = "BACKGROUND",
 		["to"] = "BOTTOMLEFT",
 		["scale"] = 2,
-		["layer"] = "BACKGROUND",
+        ["layer"] = "BACKGROUND",
+        ["layerLevel"] = -6,
 		["alpha"] = 0.8,
 		["width"] = 300,
 		["y"] = 0,
@@ -16,36 +19,37 @@ local textures = {
 		["point"] = "BOTTOMLEFT",
 		["texture"] = "Interface\\AddOns\\NugArt\\textures\\ABRight",
 	},
-	["CapRight"] = {
-		["strata"] = "MEDIUM",
-		["point"] = "BOTTOM",
-		["parent"] = "MainMenuBarArtFrame",
-		["width"] = 240,
-		["y"] = 0,
-		["x"] = 481,
-		["height"] = 120,
-		["level"] = 5,
-		["to"] = "BOTTOM",
-		["texture"] = "Interface\\AddOns\\NugArt\\textures\\d3demonCap",
-	},
-	["SkullCap"] = {
-		["strata"] = "MEDIUM",
-		["to"] = "BOTTOM",
-		["parent"] = "MainMenuBarArtFrame",
-		["width"] = 93,
-		["y"] = 0,
-		["x"] = -549,
-		["height"] = 93,
-		["level"] = 5,
-		["point"] = "BOTTOM",
-		["texture"] = "Interface\\AddOns\\NugArt\\textures\\SkullCap4",
-	},
+	-- ["CapRight"] = {
+	-- 	["strata"] = "MEDIUM",
+	-- 	["point"] = "BOTTOM",
+	-- 	["parent"] = "UIParent",
+	-- 	["width"] = 240,
+	-- 	["y"] = 0,
+	-- 	["x"] = 422,
+	-- 	["height"] = 120,
+	-- 	["level"] = 5,
+	-- 	["to"] = "BOTTOM",
+	-- 	["texture"] = "Interface\\AddOns\\NugArt\\textures\\d3demonCap",
+	-- },
+	-- ["SkullCap"] = {
+	-- 	["strata"] = "MEDIUM",
+	-- 	["to"] = "BOTTOM",
+	-- 	["parent"] = "UIParent",
+	-- 	["width"] = 93,
+	-- 	["y"] = 0,
+	-- 	["x"] = -439,
+	-- 	["height"] = 93,
+	-- 	["level"] = 5,
+	-- 	["point"] = "BOTTOM",
+	-- 	["texture"] = "Interface\\AddOns\\NugArt\\textures\\SkullCap4",
+	-- },
 
 	["Chatbg2"] = {
 		["strata"] = "BACKGROUND",
 		["point"] = "BOTTOMLEFT",
 		["scale"] = 2,
-		["layer"] = "BACKGROUND",
+        ["layer"] = "BACKGROUND",
+        ["layerLevel"] = -5,
 		["width"] = 350,
 		["y"] = -6,
 		["x"] = -6,
@@ -103,7 +107,7 @@ function NugArt.Render()
             f:SetAlpha(opts.alpha or 1)
             f:SetFrameStrata(opts.strata or "BACKGROUND")
             f:SetFrameLevel(opts.level or 1)
-            f.texture:SetDrawLayer(opts.layer or "ARTWORK")
+            f.texture:SetDrawLayer(opts.layer or "ARTWORK", opts.layerLevel or 0)
             f.texture:SetTexture(opts.texture or "")
             f:ClearAllPoints()
             f:SetPoint(opts.point or "CENTER",opts.parent or "UIParent",opts.to or "CENTER",opts.x or 0,opts.y or 0)
@@ -114,20 +118,59 @@ function NugArt.Render()
     end
 end
 
+
+local f = CreateFrame("Frame", "NugArtMainMenuBackground", UIParent)
+f:SetFrameStrata("BACKGROUND")
+f:SetPoint("BOTTOM",83+MainMenuBarTexturesOffset,0)
+f:SetSize(50, 50)
+
+f.MakeBackgroundTexture = function(self, name, numSlots)
+    local t = f:CreateTexture(name, "BACKGROUND", nil, 1)
+    t:SetAtlas("hud-MainMenuBar-small")
+    -- t:SetTexture("Interface\\MainMenuBar\\UI-MainMenuBar-Dwarf")
+    -- local crop = 0.01
+    -- local crop = 0.086
+    local crop = 0.01 + (0.0762*numSlots)
+    t:SetSize(550* crop, 49)
+    t:SetTexCoord(0, crop, 0, 1)
+    return t
+end
+
+local m = 0.75
+
+local t1 = f:MakeBackgroundTexture("NugArtBackgroundLeft", 12.07)
+t1:SetPoint("BOTTOMRIGHT", f, "BOTTOMRIGHT",3,0)
+t1:SetVertexColor(m,m,m)
+local t2 = f:MakeBackgroundTexture("NugArtBackgroundRight", 7.15)
+t2:SetPoint("BOTTOMLEFT", f, "BOTTOMRIGHT",45,0)
+t2:SetVertexColor(m,m,m)
+
+local leftcap = f:CreateTexture("NugArtLeftCap", "BACKGROUND", nil, 2)
+leftcap:SetSize(93, 93)
+leftcap:SetTexture("Interface\\AddOns\\NugArt\\textures\\SkullCap4")
+leftcap:SetPoint("BOTTOMRIGHT", t1, "BOTTOMLEFT",9,0)
+
+local rightcap = f:CreateTexture("NugArtRightCap", "ARTWORK", nil, 2)
+rightcap:SetSize(162, 81)
+rightcap:SetTexture("Interface\\AddOns\\NugArt\\textures\\d3demonCap")
+rightcap:SetPoint("BOTTOMLEFT", t2, "BOTTOMRIGHT",-73,0)
+
+
+
 NugArt.Render()
-MainMenuBarLeftEndCap:Hide()
-MainMenuBarRightEndCap:Hide()
-local m = 0.6
-MainMenuBarLeftEndCap:SetVertexColor(m,m,m)
-MainMenuBarRightEndCap:SetVertexColor(m,m,m)
-MainMenuBarTexture0:SetVertexColor(m,m,m)
-MainMenuBarTexture1:SetVertexColor(m,m,m)
-MainMenuBarTexture2:SetVertexColor(m,m,m)
-MainMenuBarTexture3:SetVertexColor(m,m,m)
-MainMenuMaxLevelBar0:SetVertexColor(m,m,m)
-MainMenuMaxLevelBar1:SetVertexColor(m,m,m)
-MainMenuMaxLevelBar2:SetVertexColor(m,m,m)
-MainMenuMaxLevelBar3:SetVertexColor(m,m,m)
+-- MainMenuBarLeftEndCap:Hide()
+-- MainMenuBarRightEndCap:Hide()
+-- local m = 0.6
+-- MainMenuBarLeftEndCap:SetVertexColor(m,m,m)
+-- MainMenuBarRightEndCap:SetVertexColor(m,m,m)
+-- MainMenuBarTexture0:SetVertexColor(m,m,m)
+-- MainMenuBarTexture1:SetVertexColor(m,m,m)
+-- MainMenuBarTexture2:SetVertexColor(m,m,m)
+-- MainMenuBarTexture3:SetVertexColor(m,m,m)
+-- MainMenuMaxLevelBar0:SetVertexColor(m,m,m)
+-- MainMenuMaxLevelBar1:SetVertexColor(m,m,m)
+-- MainMenuMaxLevelBar2:SetVertexColor(m,m,m)
+-- MainMenuMaxLevelBar3:SetVertexColor(m,m,m)
 
 --[[[--~ ***LAYER***
 --~ BACKGROUND - Level 0. Place the background of your frame here.

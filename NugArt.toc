@@ -1,4 +1,4 @@
-## Interface: 30000
+## Interface: 80000
 ## Title: NugArt
 ## Notes: --
 ## Author: d87
