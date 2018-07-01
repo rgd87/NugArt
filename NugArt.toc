@@ -1,0 +1,7 @@
+## Interface: 30000
+## Title: NugArt
+## Notes: --
+## Author: d87
+## SavedVariables: NugArtDB
+## SavedVariablesPerCharacter: NugArtProfile
+NugArt.lua
