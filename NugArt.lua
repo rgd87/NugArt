@@ -139,7 +139,7 @@ end
 local m = 0.75
 
 local t1 = f:MakeBackgroundTexture("NugArtBackgroundLeft", 12.07)
-t1:SetPoint("BOTTOMRIGHT", f, "BOTTOMRIGHT",3,0)
+t1:SetPoint("BOTTOMRIGHT", f, "BOTTOMRIGHT",9,0)
 t1:SetVertexColor(m,m,m)
 local t2 = f:MakeBackgroundTexture("NugArtBackgroundRight", 7.15)
 t2:SetPoint("BOTTOMLEFT", f, "BOTTOMRIGHT",45,0)
