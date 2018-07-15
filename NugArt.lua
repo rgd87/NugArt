@@ -2,6 +2,60 @@ local NugArt = CreateFrame("Frame")
 
 local MainMenuBarTexturesOffset = 0
 
+local f = CreateFrame("Frame", "NugArtMainMenuBackground", UIParent)
+f:SetFrameStrata("BACKGROUND")
+f:SetPoint("BOTTOM",83+MainMenuBarTexturesOffset,0)
+f:SetSize(50, 50)
+
+f.MakeBackgroundTexture = function(self, name, numSlots)
+    local t = f:CreateTexture(name, "BACKGROUND", nil, 1)
+    t:SetAtlas("hud-MainMenuBar-small")
+    -- t:SetTexture("Interface\\MainMenuBar\\UI-MainMenuBar-Dwarf")
+    -- local crop = 0.01
+    -- local crop = 0.086
+    local crop = 0.01 + (0.0762*numSlots)
+    t:SetSize(550* crop, 49)
+    t:SetTexCoord(0, crop, 0, 1)
+    return t
+end
+
+local m = 0.75
+
+local t1 = f:MakeBackgroundTexture("NugArtBackgroundLeft", 12.07)
+t1:SetPoint("BOTTOMRIGHT", f, "BOTTOMRIGHT",9,0)
+t1:SetVertexColor(m,m,m)
+local t2 = f:MakeBackgroundTexture("NugArtBackgroundRight", 7.15)
+t2:SetPoint("BOTTOMLEFT", f, "BOTTOMRIGHT",45,0)
+t2:SetVertexColor(m,m,m)
+
+local leftcap = f:CreateTexture("NugArtLeftCap", "BACKGROUND", nil, 2)
+leftcap:SetSize(93, 93)
+leftcap:SetTexture("Interface\\AddOns\\NugArt\\textures\\SkullCap4")
+leftcap:SetPoint("BOTTOMRIGHT", t1, "BOTTOMLEFT",9,0)
+
+local rightcap = f:CreateTexture("NugArtRightCap", "ARTWORK", nil, 2)
+rightcap:SetSize(162, 81)
+rightcap:SetTexture("Interface\\AddOns\\NugArt\\textures\\d3demonCap")
+rightcap:SetPoint("BOTTOMLEFT", t2, "BOTTOMRIGHT",-73,0)
+
+f:SetScript("OnEvent", function(self, event, ...)
+	return self[event](self, event, ...)
+end)
+
+f:RegisterEvent("PET_BATTLE_OPENING_START")
+f:RegisterEvent("PET_BATTLE_CLOSE")
+
+function f:PET_BATTLE_OPENING_START()
+    self:Hide()
+end
+function f:PET_BATTLE_CLOSE()
+    self:Show()
+end
+
+
+
+
+
 local textures = {
 	["Chatbg1"] = {
 		["strata"] = "BACKGROUND",
@@ -117,44 +171,6 @@ function NugArt.Render()
         end
     end
 end
-
-
-local f = CreateFrame("Frame", "NugArtMainMenuBackground", UIParent)
-f:SetFrameStrata("BACKGROUND")
-f:SetPoint("BOTTOM",83+MainMenuBarTexturesOffset,0)
-f:SetSize(50, 50)
-
-f.MakeBackgroundTexture = function(self, name, numSlots)
-    local t = f:CreateTexture(name, "BACKGROUND", nil, 1)
-    t:SetAtlas("hud-MainMenuBar-small")
-    -- t:SetTexture("Interface\\MainMenuBar\\UI-MainMenuBar-Dwarf")
-    -- local crop = 0.01
-    -- local crop = 0.086
-    local crop = 0.01 + (0.0762*numSlots)
-    t:SetSize(550* crop, 49)
-    t:SetTexCoord(0, crop, 0, 1)
-    return t
-end
-
-local m = 0.75
-
-local t1 = f:MakeBackgroundTexture("NugArtBackgroundLeft", 12.07)
-t1:SetPoint("BOTTOMRIGHT", f, "BOTTOMRIGHT",9,0)
-t1:SetVertexColor(m,m,m)
-local t2 = f:MakeBackgroundTexture("NugArtBackgroundRight", 7.15)
-t2:SetPoint("BOTTOMLEFT", f, "BOTTOMRIGHT",45,0)
-t2:SetVertexColor(m,m,m)
-
-local leftcap = f:CreateTexture("NugArtLeftCap", "BACKGROUND", nil, 2)
-leftcap:SetSize(93, 93)
-leftcap:SetTexture("Interface\\AddOns\\NugArt\\textures\\SkullCap4")
-leftcap:SetPoint("BOTTOMRIGHT", t1, "BOTTOMLEFT",9,0)
-
-local rightcap = f:CreateTexture("NugArtRightCap", "ARTWORK", nil, 2)
-rightcap:SetSize(162, 81)
-rightcap:SetTexture("Interface\\AddOns\\NugArt\\textures\\d3demonCap")
-rightcap:SetPoint("BOTTOMLEFT", t2, "BOTTOMRIGHT",-73,0)
-
 
 
 NugArt.Render()
