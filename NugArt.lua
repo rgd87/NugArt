@@ -4,7 +4,7 @@ local MainMenuBarTexturesOffset = 0
 
 local f = CreateFrame("Frame", "NugArtMainMenuBackground", UIParent)
 f:SetFrameStrata("BACKGROUND")
-f:SetPoint("BOTTOM",83+MainMenuBarTexturesOffset,0)
+f:SetPoint("BOTTOM",75+MainMenuBarTexturesOffset,0)
 f:SetSize(50, 50)
 
 f.MakeBackgroundTexture = function(self, name, numSlots)
