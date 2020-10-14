@@ -28,10 +28,18 @@ local t2 = f:MakeBackgroundTexture("NugArtBackgroundRight", 7.15)
 t2:SetPoint("BOTTOMLEFT", f, "BOTTOMRIGHT",45,0)
 t2:SetVertexColor(m,m,m)
 
-local leftcap = f:CreateTexture("NugArtLeftCap", "BACKGROUND", nil, 2)
-leftcap:SetSize(93, 93)
-leftcap:SetTexture("Interface\\AddOns\\NugArt\\textures\\SkullCap4")
-leftcap:SetPoint("BOTTOMRIGHT", t1, "BOTTOMLEFT",9,0)
+-- Skull
+-- local leftcap = f:CreateTexture("NugArtLeftCap", "BACKGROUND", nil, 2)
+-- leftcap:SetSize(93, 93)
+-- leftcap:SetTexture("Interface\\AddOns\\NugArt\\textures\\SkullCap4")
+-- leftcap:SetPoint("BOTTOMRIGHT", t1, "BOTTOMLEFT",9,0)
+
+-- Angel
+local leftcap = f:CreateTexture("NugArtReftCap", "ARTWORK", nil, 2)
+leftcap:SetSize(162, 81)
+leftcap:SetTexture("Interface\\AddOns\\NugArt\\textures\\d3demonCap")
+leftcap:SetTexCoord(1,0,0,1)
+leftcap:SetPoint("BOTTOMRIGHT", t1, "BOTTOMLEFT",73,0)
 
 local rightcap = f:CreateTexture("NugArtRightCap", "ARTWORK", nil, 2)
 rightcap:SetSize(162, 81)
@@ -63,7 +71,7 @@ local textures = {
 		["scale"] = 2,
         ["layer"] = "BACKGROUND",
         ["layerLevel"] = -6,
-		["alpha"] = 0.8,
+		["alpha"] = 0.6,
 		["width"] = 300,
 		["y"] = 0,
 		["x"] = -6,
@@ -104,7 +112,8 @@ local textures = {
 		["scale"] = 2,
         ["layer"] = "BACKGROUND",
         ["layerLevel"] = -5,
-		["width"] = 350,
+        ["width"] = 350,
+        ["alpha"] = 0.6,
 		["y"] = -6,
 		["x"] = -6,
 		["disable"] = false,
