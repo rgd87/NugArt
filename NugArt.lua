@@ -6,6 +6,7 @@ local f = CreateFrame("Frame", "NugArtMainMenuBackground", UIParent)
 f:SetFrameStrata("BACKGROUND")
 f:SetPoint("BOTTOM",75+MainMenuBarTexturesOffset,0)
 f:SetSize(50, 50)
+f:SetScale(0.8)
 
 f.MakeBackgroundTexture = function(self, name, numSlots)
     local t = f:CreateTexture(name, "BACKGROUND", nil, 1)
@@ -27,6 +28,9 @@ t1:SetVertexColor(m,m,m)
 local t2 = f:MakeBackgroundTexture("NugArtBackgroundRight", 7.15)
 t2:SetPoint("BOTTOMLEFT", f, "BOTTOMRIGHT",45,0)
 t2:SetVertexColor(m,m,m)
+
+t2:SetDrawLayer("BACKGROUND", 0)
+t2:SetPoint("BOTTOMLEFT", f, "BOTTOMRIGHT",-40,0)
 
 -- Skull
 -- local leftcap = f:CreateTexture("NugArtLeftCap", "BACKGROUND", nil, 2)
