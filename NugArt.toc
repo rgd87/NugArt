@@ -1,5 +1,6 @@
 ## Interface: 80000
 ## Title: NugArt
 ## Notes: --
+## OptionalDeps: oUF_NugVials
 ## Author: d87
 NugArt.lua
