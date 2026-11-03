@@ -1,5 +1,6 @@
-## Interface: 80000
+## Interface: 16001
 ## Title: NugArt
+## IconTexture: 1305154
 ## Notes: --
 ## OptionalDeps: oUF_NugVials
 ## Author: d87

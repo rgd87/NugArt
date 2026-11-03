@@ -6,9 +6,9 @@ local f = CreateFrame("Frame", "NugArtMainMenuBackground", UIParent)
 f:SetFrameStrata("BACKGROUND")
 f:SetPoint("BOTTOM",75+MainMenuBarTexturesOffset,0)
 f:SetSize(50, 50)
-f:SetScale(0.8)
-
+f:SetScale(1.12)
 f.MakeBackgroundTexture = function(self, name, numSlots)
+
     local t = f:CreateTexture(name, "BACKGROUND", nil, 1)
     t:SetAtlas("hud-MainMenuBar-small")
     -- t:SetTexture("Interface\\MainMenuBar\\UI-MainMenuBar-Dwarf")
@@ -21,26 +21,30 @@ f.MakeBackgroundTexture = function(self, name, numSlots)
 end
 
 local m = 0.75
-
 local t1 = f:MakeBackgroundTexture("NugArtBackgroundLeft", 12.07)
+
 t1:SetPoint("BOTTOMRIGHT", f, "BOTTOMRIGHT",9,0)
+
 t1:SetVertexColor(m,m,m)
-local t2 = f:MakeBackgroundTexture("NugArtBackgroundRight", 7.15)
--- local t2 = f:MakeBackgroundTexture("NugArtBackgroundRight", 6.87)
-t2:SetPoint("BOTTOMLEFT", f, "BOTTOMRIGHT",45,0)
-t2:SetVertexColor(m,m,m)
-local t3 = f:MakeBackgroundTexture("NugArtBackgroundRight2", 7.15)
-t3:SetPoint("BOTTOMLEFT", t2, "BOTTOMRIGHT",-52,0)
-t3:SetDrawLayer("BACKGROUND", -1)
-t3:SetVertexColor(m,m,m)
 
 
-if IsAddOnLoaded("oUF_NugVials") then
+-- local t2 = f:MakeBackgroundTexture("NugArtBackgroundRight", 7.15)
+-- -- local t2 = f:MakeBackgroundTexture("NugArtBackgroundRight", 6.87)
+-- t2:SetPoint("BOTTOMLEFT", f, "BOTTOMRIGHT",45,0)
+-- t2:SetVertexColor(m,m,m)
+
+-- local t3 = f:MakeBackgroundTexture("NugArtBackgroundRight2", 7.15)
+-- t3:SetPoint("BOTTOMLEFT", t2, "BOTTOMRIGHT",-52,0)
+-- t3:SetDrawLayer("BACKGROUND", -1)
+-- t3:SetVertexColor(m,m,m)
+
+
+if C_AddOns.IsAddOnLoaded("oUF_NugVials") then
     oUF_NugVials:SetScale(0.8)
     oUF_NugVials:SetPoint("BOTTOM",150,0)
-else
-    t2:SetDrawLayer("BACKGROUND", 0)
-    t2:SetPoint("BOTTOMLEFT", f, "BOTTOMRIGHT",-40,0)
+-- else
+    -- t2:SetDrawLayer("BACKGROUND", 0)
+    -- t2:SetPoint("BOTTOMLEFT", f, "BOTTOMRIGHT",-40,0)
 end
 
 -- Skull
@@ -59,7 +63,9 @@ leftcap:SetPoint("BOTTOMRIGHT", t1, "BOTTOMLEFT",73,0)
 local rightcap = f:CreateTexture("NugArtRightCap", "ARTWORK", nil, 2)
 rightcap:SetSize(162, 81)
 rightcap:SetTexture("Interface\\AddOns\\NugArt\\textures\\d3demonCap")
-rightcap:SetPoint("BOTTOMLEFT", t3, "BOTTOMRIGHT",-73,0)
+-- rightcap:SetPoint("BOTTOMLEFT", t3, "BOTTOMRIGHT",-73,0)
+-- rightcap:SetPoint("BOTTOMLEFT", t2, "BOTTOMRIGHT",-73,0)
+rightcap:SetPoint("BOTTOMLEFT", t1, "BOTTOMRIGHT",-73,0)
 
 f:SetScript("OnEvent", function(self, event, ...)
 	return self[event](self, event, ...)
