@@ -28,10 +28,10 @@ t1:SetPoint("BOTTOMRIGHT", f, "BOTTOMRIGHT",9,0)
 t1:SetVertexColor(m,m,m)
 
 
--- local t2 = f:MakeBackgroundTexture("NugArtBackgroundRight", 7.15)
--- -- local t2 = f:MakeBackgroundTexture("NugArtBackgroundRight", 6.87)
--- t2:SetPoint("BOTTOMLEFT", f, "BOTTOMRIGHT",45,0)
--- t2:SetVertexColor(m,m,m)
+local t2 = f:MakeBackgroundTexture("NugArtBackgroundRight", 7.15)
+-- local t2 = f:MakeBackgroundTexture("NugArtBackgroundRight", 6.87)
+t2:SetPoint("BOTTOMLEFT", f, "BOTTOMRIGHT",45,0)
+t2:SetVertexColor(m,m,m)
 
 -- local t3 = f:MakeBackgroundTexture("NugArtBackgroundRight2", 7.15)
 -- t3:SetPoint("BOTTOMLEFT", t2, "BOTTOMRIGHT",-52,0)
@@ -40,8 +40,8 @@ t1:SetVertexColor(m,m,m)
 
 
 if C_AddOns.IsAddOnLoaded("oUF_NugVials") then
-    oUF_NugVials:SetScale(0.8)
-    oUF_NugVials:SetPoint("BOTTOM",150,0)
+    oUF_NugVials:SetScale(1.12)
+    oUF_NugVials:SetPoint("BOTTOM",152,0)
 -- else
     -- t2:SetDrawLayer("BACKGROUND", 0)
     -- t2:SetPoint("BOTTOMLEFT", f, "BOTTOMRIGHT",-40,0)
@@ -64,8 +64,8 @@ local rightcap = f:CreateTexture("NugArtRightCap", "ARTWORK", nil, 2)
 rightcap:SetSize(162, 81)
 rightcap:SetTexture("Interface\\AddOns\\NugArt\\textures\\d3demonCap")
 -- rightcap:SetPoint("BOTTOMLEFT", t3, "BOTTOMRIGHT",-73,0)
--- rightcap:SetPoint("BOTTOMLEFT", t2, "BOTTOMRIGHT",-73,0)
-rightcap:SetPoint("BOTTOMLEFT", t1, "BOTTOMRIGHT",-73,0)
+rightcap:SetPoint("BOTTOMLEFT", t2, "BOTTOMRIGHT",-73,0)
+-- rightcap:SetPoint("BOTTOMLEFT", t1, "BOTTOMRIGHT",-73,0)
 
 f:SetScript("OnEvent", function(self, event, ...)
 	return self[event](self, event, ...)
